@@ -5,9 +5,12 @@ import {
   ImageContainer, 
   RestaurantImage, 
   InfoContainer, 
+  RestaurantInfo,
   RestaurantName, 
   CuisineType, 
+  RatingContainer,
   Rating,
+  StarIcon,
   FeaturedBadge 
 } from './styles';
 
@@ -36,9 +39,14 @@ const RestaurantCardComponent = ({
           {featured && <FeaturedBadge>Destaque</FeaturedBadge>}
         </ImageContainer>
         <InfoContainer>
-          <RestaurantName>{name}</RestaurantName>
-          <CuisineType>{cuisine}</CuisineType>
-          <Rating>⭐ {rating}</Rating>
+          <RestaurantInfo>
+            <RestaurantName>{name}</RestaurantName>
+            <CuisineType>{cuisine}</CuisineType>
+          </RestaurantInfo>
+          <RatingContainer>
+            <Rating>{rating}</Rating>
+            <StarIcon>⭐</StarIcon>
+          </RatingContainer>
         </InfoContainer>
       </Card>
     </Link>

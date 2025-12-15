@@ -40,17 +40,31 @@ function App() {
       <GlobalStyles />
       <BrowserRouter>
         <AppContainer>
-          <Header cartCount={cart.totalItems} onCartClick={toggleCart} />
+          <Routes>
+            <Route path="/" element={
+              <>
+                <Header cartCount={cart.totalItems} onCartClick={toggleCart} />
+                <Home />
+              </>
+            } />
+            <Route path="/restaurant/:id" element={
+              <>
+                <Header cartCount={cart.totalItems} onCartClick={toggleCart} isRestaurantPage />
+                <Restaurant onAddToCart={handleAddToCart} />
+              </>
+            } />
+            <Route path="*" element={
+              <>
+                <Header cartCount={cart.totalItems} onCartClick={toggleCart} />
+                <NotFound />
+              </>
+            } />
+          </Routes>
           <Cart cart={cart} onClose={toggleCart} onRemoveItem={removeItem} onCheckout={clearCart} />
           {toastMessage && (
             <Toast message={toastMessage} onClose={() => setToastMessage(null)} />
           )}
           <Main>
-            <Routes>
-              <Route path="/" element={<Home />} />
-              <Route path="/restaurant/:id" element={<Restaurant onAddToCart={handleAddToCart} />} />
-              <Route path="*" element={<NotFound />} />
-            </Routes>
           </Main>
           <Footer />
         </AppContainer>

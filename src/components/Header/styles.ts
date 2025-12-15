@@ -1,63 +1,81 @@
 import styled from 'styled-components';
 
 export const HeaderContainer = styled.header`
-  position: sticky;
-  top: 0;
-  z-index: 100;
   background-color: ${({ theme }) => theme.colors.secondary};
-  padding: 16px 24px;
+  padding: 40px 0;
+`;
+
+export const HeaderContent = styled.div<{ $isHomePage?: boolean }>`
+  max-width: 1024px;
+  margin: 0 auto;
+  padding: 0 24px;
   display: flex;
-  justify-content: space-between;
+  justify-content: ${({ $isHomePage }) => $isHomePage ? 'center' : 'space-between'};
   align-items: center;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 
   @media (max-width: ${({ theme }) => theme.breakpoints.mobile}) {
-    padding: 12px 16px;
+    padding: 0 16px;
+    flex-direction: column;
+    gap: 16px;
+  }
+`;
+
+export const RestaurantsLink = styled.div`
+  font-size: 18px;
+  font-weight: 900;
+  color: ${({ theme }) => theme.colors.primary};
+  
+  a {
+    color: inherit;
+    text-decoration: none;
+  }
+
+  @media (max-width: ${({ theme }) => theme.breakpoints.mobile}) {
+    font-size: 16px;
   }
 `;
 
 export const Logo = styled.h1`
-  font-size: 32px;
+  font-size: 36px;
   font-weight: 900;
   color: ${({ theme }) => theme.colors.primary};
   margin: 0;
+  text-align: center;
 
   @media (max-width: ${({ theme }) => theme.breakpoints.mobile}) {
-    font-size: 24px;
+    font-size: 28px;
   }
 `;
 
-export const CartButton = styled.button`
-  position: relative;
-  background: ${({ theme }) => theme.colors.primary};
-  color: ${({ theme }) => theme.colors.white};
-  border: none;
-  border-radius: 50%;
-  width: 48px;
-  height: 48px;
-  font-size: 24px;
+export const CartInfo = styled.div`
   display: flex;
   align-items: center;
-  justify-content: center;
+`;
+
+export const CartButton = styled.button`
+  background: none;
+  border: none;
+  font-size: 18px;
+  font-weight: 900;
+  color: ${({ theme }) => theme.colors.primary};
   cursor: pointer;
-  transition: transform 0.2s ease;
+  position: relative;
+  padding: 0;
 
   &:hover {
-    transform: scale(1.1);
+    opacity: 0.8;
   }
 
   @media (max-width: ${({ theme }) => theme.breakpoints.mobile}) {
-    width: 40px;
-    height: 40px;
-    font-size: 20px;
+    font-size: 16px;
   }
 `;
 
 export const CartBadge = styled.span`
   position: absolute;
-  top: -4px;
-  right: -4px;
-  background-color: ${({ theme }) => theme.colors.text};
+  top: -8px;
+  right: -8px;
+  background-color: ${({ theme }) => theme.colors.primary};
   color: ${({ theme }) => theme.colors.white};
   border-radius: 50%;
   width: 20px;

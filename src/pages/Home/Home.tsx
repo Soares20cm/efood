@@ -3,6 +3,7 @@ import { restaurants } from '../../data/restaurants';
 import { 
   HomeContainer, 
   Hero, 
+  HeroContent,
   HeroTitle, 
   HeroSubtitle, 
   RestaurantsSection,
@@ -13,10 +14,13 @@ export const Home = () => {
   return (
     <HomeContainer>
       <Hero>
-        <HeroTitle>efood</HeroTitle>
-        <HeroSubtitle>
-          Descubra os melhores restaurantes e peça sua comida favorita
-        </HeroSubtitle>
+        <HeroContent>
+          <HeroTitle>efood</HeroTitle>
+          <HeroSubtitle>
+            Viva experiências gastronômicas<br />
+            no conforto da sua casa
+          </HeroSubtitle>
+        </HeroContent>
       </Hero>
       
       <RestaurantsSection>
