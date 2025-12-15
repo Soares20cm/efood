@@ -7,22 +7,12 @@ export const HomeContainer = styled.div`
 `;
 
 export const Hero = styled.section`
-  background-image: url('https://via.placeholder.com/1366x384/E66767/FFFFFF?text=Hero+Background');
+  background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('https://images.unsplash.com/photo-1504674900247-0877df9cc836?ixlib=rb-4.0.3&auto=format&fit=crop&w=1470&q=80');
   background-size: cover;
   background-position: center;
   padding: 40px 0;
   text-align: center;
   position: relative;
-
-  &::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: rgba(0, 0, 0, 0.5);
-  }
 `;
 
 export const HeroContent = styled.div`

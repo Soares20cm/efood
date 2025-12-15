@@ -34,10 +34,9 @@ export const CartContainer = styled.div`
   top: 0;
   right: 0;
   width: 100%;
-  max-width: 400px;
+  max-width: 360px;
   height: 100vh;
-  background-color: ${({ theme }) => theme.colors.white};
-  box-shadow: -4px 0 16px rgba(0, 0, 0, 0.2);
+  background-color: ${({ theme }) => theme.colors.primary};
   z-index: 1000;
   display: flex;
   flex-direction: column;
@@ -50,49 +49,40 @@ export const CartContainer = styled.div`
 
 export const CartHeader = styled.div`
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-end;
   align-items: center;
-  padding: 20px;
-  border-bottom: 1px solid ${({ theme }) => theme.colors.secondary};
+  padding: 32px 8px 16px 8px;
 
   @media (max-width: ${({ theme }) => theme.breakpoints.mobile}) {
-    padding: 16px;
+    padding: 24px 8px 16px 8px;
   }
 `;
 
 export const CartTitle = styled.h2`
-  font-size: 24px;
+  font-size: 16px;
   font-weight: 700;
-  color: ${({ theme }) => theme.colors.text};
+  color: ${({ theme }) => theme.colors.secondary};
   margin: 0;
-
-  @media (max-width: ${({ theme }) => theme.breakpoints.mobile}) {
-    font-size: 20px;
-  }
 `;
 
 export const CloseButton = styled.button`
   background: none;
   border: none;
-  font-size: 24px;
-  color: ${({ theme }) => theme.colors.text};
+  font-size: 16px;
+  color: ${({ theme }) => theme.colors.secondary};
   cursor: pointer;
   padding: 4px;
-  transition: transform 0.2s ease;
+  transition: opacity 0.2s ease;
 
   &:hover {
-    transform: scale(1.2);
+    opacity: 0.8;
   }
 `;
 
 export const CartContent = styled.div`
   flex: 1;
   overflow-y: auto;
-  padding: 20px;
-
-  @media (max-width: ${({ theme }) => theme.breakpoints.mobile}) {
-    padding: 16px;
-  }
+  padding: 0 8px;
 `;
 
 export const CartItems = styled.div`
@@ -105,19 +95,9 @@ export const CartItem = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
-  padding: 16px;
-  background-color: ${({ theme }) => theme.colors.background};
-  border-radius: 8px;
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
-
-  &:hover {
-    transform: translateX(-4px);
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-  }
-
-  @media (max-width: ${({ theme }) => theme.breakpoints.mobile}) {
-    padding: 12px;
-  }
+  padding: 8px;
+  background-color: ${({ theme }) => theme.colors.secondary};
+  position: relative;
 `;
 
 export const ItemInfo = styled.div`
@@ -125,56 +105,52 @@ export const ItemInfo = styled.div`
 `;
 
 export const ItemName = styled.h4`
-  font-size: 16px;
-  font-weight: 700;
-  color: ${({ theme }) => theme.colors.text};
-  margin: 0 0 8px 0;
+  font-size: 18px;
+  font-weight: 900;
+  color: ${({ theme }) => theme.colors.primary};
+  margin: 0 0 16px 0;
 `;
 
 export const ItemPrice = styled.p`
   font-size: 14px;
   color: ${({ theme }) => theme.colors.primary};
-  font-weight: 600;
-  margin: 0 0 4px 0;
+  font-weight: 400;
+  margin: 0;
+  line-height: 22px;
 `;
 
 export const ItemQuantity = styled.p`
   font-size: 14px;
-  color: ${({ theme }) => theme.colors.text};
-  opacity: 0.7;
+  color: ${({ theme }) => theme.colors.primary};
   margin: 0;
+  line-height: 22px;
 `;
 
 export const RemoveButton = styled.button`
+  position: absolute;
+  bottom: 8px;
+  right: 8px;
   background: none;
   border: none;
-  font-size: 20px;
+  font-size: 16px;
+  color: ${({ theme }) => theme.colors.primary};
   cursor: pointer;
-  padding: 4px;
-  transition: transform 0.2s ease, opacity 0.2s ease;
-  opacity: 0.7;
-
+  padding: 0;
+  
   &:hover {
-    transform: scale(1.2);
-    opacity: 1;
+    opacity: 0.7;
   }
 `;
 
 export const EmptyMessage = styled.p`
   text-align: center;
-  color: ${({ theme }) => theme.colors.text};
-  opacity: 0.6;
+  color: ${({ theme }) => theme.colors.secondary};
   font-size: 16px;
   margin-top: 40px;
 `;
 
 export const CartFooter = styled.div`
-  padding: 20px;
-  border-top: 1px solid ${({ theme }) => theme.colors.secondary};
-
-  @media (max-width: ${({ theme }) => theme.breakpoints.mobile}) {
-    padding: 16px;
-  }
+  padding: 40px 8px 8px 8px;
 `;
 
 export const TotalContainer = styled.div`
@@ -185,21 +161,13 @@ export const TotalContainer = styled.div`
 `;
 
 export const TotalLabel = styled.span`
-  font-size: 18px;
+  font-size: 14px;
   font-weight: 700;
-  color: ${({ theme }) => theme.colors.text};
-
-  @media (max-width: ${({ theme }) => theme.breakpoints.mobile}) {
-    font-size: 16px;
-  }
+  color: ${({ theme }) => theme.colors.secondary};
 `;
 
 export const TotalPrice = styled.span`
-  font-size: 24px;
+  font-size: 14px;
   font-weight: 700;
-  color: ${({ theme }) => theme.colors.primary};
-
-  @media (max-width: ${({ theme }) => theme.breakpoints.mobile}) {
-    font-size: 20px;
-  }
+  color: ${({ theme }) => theme.colors.secondary};
 `;
