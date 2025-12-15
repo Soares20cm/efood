@@ -42,7 +42,7 @@ export const StyledButton = styled.button<StyledButtonProps>`
         `
       : css`
           background-color: ${theme.colors.secondary};
-          color: ${theme.colors.text};
+          color: ${theme.colors.primary};
           
           &:hover:not(:disabled) {
             background-color: #ffd9b3;

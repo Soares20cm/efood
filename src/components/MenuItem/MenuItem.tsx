@@ -35,8 +35,8 @@ const MenuItemComponent = ({ item, onAddToCart }: MenuItemProps) => {
         <ItemDescription>{item.description}</ItemDescription>
         <PriceContainer>
           <Price>{formatPrice(item.price)}</Price>
-          <Button onClick={() => onAddToCart(item)} size="small">
-            Adicionar
+          <Button onClick={() => onAddToCart(item)} size="small" variant="secondary">
+            Adicionar ao carrinho
           </Button>
         </PriceContainer>
       </InfoContainer>

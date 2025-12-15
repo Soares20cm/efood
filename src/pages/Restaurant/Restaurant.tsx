@@ -5,11 +5,9 @@ import type { MenuItem as MenuItemType } from '../../types';
 import {
   RestaurantContainer,
   Banner,
-  BannerOverlay,
   RestaurantInfo,
   RestaurantName,
   CuisineType,
-  Rating,
   MenuSection,
   MenuGrid,
 } from './styles';
@@ -30,13 +28,10 @@ export const Restaurant = ({ onAddToCart }: RestaurantProps) => {
   return (
     <RestaurantContainer>
       <Banner $image={restaurant.banner}>
-        <BannerOverlay>
-          <RestaurantInfo>
-            <CuisineType>{restaurant.cuisine}</CuisineType>
-            <RestaurantName>{restaurant.name}</RestaurantName>
-            <Rating>⭐ {restaurant.rating}</Rating>
-          </RestaurantInfo>
-        </BannerOverlay>
+        <RestaurantInfo>
+          <CuisineType>{restaurant.cuisine}</CuisineType>
+          <RestaurantName>{restaurant.name}</RestaurantName>
+        </RestaurantInfo>
       </Banner>
 
       <MenuSection>
