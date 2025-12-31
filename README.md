@@ -1,6 +1,20 @@
-# Getting Started with Create React App
+# Meu E-Food
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Aplicação de delivery de comida desenvolvida com React, TypeScript e Styled Components.
+
+## Sobre o Projeto
+
+Este é um projeto de e-commerce para delivery de comida, desenvolvido com as mais modernas tecnologias web.
+
+### Tecnologias Utilizadas
+
+- React 18
+- TypeScript
+- Styled Components
+- React Router DOM
+- Create React App
+
+## Como Executar
 
 ## Available Scripts
 
