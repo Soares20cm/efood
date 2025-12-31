@@ -1,5 +1,4 @@
 import Tag from '../Tag'
-import sushi from '../../assets/images/suchi.png'
 
 import { Card, Descricao, Titulo, Infos } from './styles'
 
@@ -21,7 +20,7 @@ const Product = ({
   image
 }: Props) => (
   <Card>
-    <img src={sushi} alt={title} />
+    <img src={image} alt={title} />
     <Infos>
       {infos.map((info) => (
         <Tag key={info}>{info}</Tag>

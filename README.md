@@ -1,4 +1,4 @@
-# Meu E-Food
+# E-Food
 
 Aplicação de delivery de comida desenvolvida com React, TypeScript e Styled Components.
 
