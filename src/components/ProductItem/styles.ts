@@ -27,10 +27,10 @@ export const Card = styled.div`
     cursor: pointer;
     margin-top: 8px;
     display: block;
-    
+
     /* Garante que o texto fique centralizado e visível */
     text-align: center;
-    line-height: normal; 
+    line-height: normal;
   }
 `
 
@@ -99,9 +99,9 @@ export const ModalContent = styled.div`
       line-height: 22px;
       margin-bottom: 16px;
     }
-    
+
     button {
-      background-color: #FFEBD9; /* Cor exata do Figma */
+      background-color: #ffebd9; /* Cor exata do Figma */
       color: ${cores.corSalmao}; /* O texto dentro deve ser o vermelho/salmão */
       border: none;
       padding: 4px 12px;
@@ -126,4 +126,3 @@ export const ModalContent = styled.div`
     cursor: pointer;
   }
 `
-

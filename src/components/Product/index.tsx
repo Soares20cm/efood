@@ -11,7 +11,7 @@ import {
 
 // Atualizamos aqui para aceitar o ID que vem do ProductsList
 type Props = {
-  id: number           // Esta linha resolve o erro
+  id: number // Esta linha resolve o erro
   title: string
   category?: string
   description: string

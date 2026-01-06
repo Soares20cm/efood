@@ -6,7 +6,7 @@ type Props = {
     id: number
     title: string
     description: string
-    info: string    // ADICIONE ESTA LINHA AQUI
+    info: string // ADICIONE ESTA LINHA AQUI
     image: string
     portion?: string
     price?: string

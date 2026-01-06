@@ -15,7 +15,14 @@ type Props = {
   price?: string
 }
 
-const ProductItem = ({ title, description, info, image, portion, price }: Props) => {
+const ProductItem = ({
+  title,
+  description,
+  info,
+  image,
+  portion,
+  price
+}: Props) => {
   const [isVisible, setIsVisible] = useState(false)
   const dispatch = useDispatch() // Hook para disparar ações
 
@@ -30,7 +37,7 @@ const ProductItem = ({ title, description, info, image, portion, price }: Props)
       })
     )
     setIsVisible(false) // Fecha o modal de detalhes
-    dispatch(open())    // Abre o carrinho (Sidebar)
+    dispatch(open()) // Abre o carrinho (Sidebar)
   }
 
   return (
@@ -39,8 +46,8 @@ const ProductItem = ({ title, description, info, image, portion, price }: Props)
         <img src={image} alt={title || ''} />
         <Titulo>{title}</Titulo>
         <Descricao>{description}</Descricao>
-        <Button 
-          type="button" 
+        <Button
+          type="button"
           title="Clique para ver detalhes"
           onClick={() => setIsVisible(true)}
         >
@@ -55,26 +62,26 @@ const ProductItem = ({ title, description, info, image, portion, price }: Props)
             <img src={image} alt={title || ''} />
             <div>
               <h3>{title}</h3>
-              <p>{info}</p> 
+              <p>{info}</p>
               <p>Serve de: {portion || ''}</p>
               {/* ATUALIZAÇÃO: Clique agora chama a função addToCart */}
-              <Button 
-                type="button" 
+              <Button
+                type="button"
                 title="Adicionar ao carrinho"
                 onClick={addToCart}
               >
                 {`Adicionar ao carrinho - R$ ${price || ''}`}
               </Button>
             </div>
-            <div 
-              className="close-icon" 
+            <div
+              className="close-icon"
               onClick={() => setIsVisible(false)}
-              style={{ 
-                cursor: 'pointer', 
-                fontSize: '28px', 
-                color: '#fff', 
-                position: 'absolute', 
-                top: '8px', 
+              style={{
+                cursor: 'pointer',
+                fontSize: '28px',
+                color: '#fff',
+                position: 'absolute',
+                top: '8px',
                 right: '16px',
                 fontWeight: 'bold'
               }}

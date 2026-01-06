@@ -11,7 +11,7 @@ const Banner = () => (
       <Link title="Clique aqui para voltar para a Home" to="/">
         <img src={bannerImgEfood} alt="efood" className="logo" />
       </Link>
-      
+
       <TituloBanner>
         Viva experiências gastronômicas <br /> no conforto da sua casa
       </TituloBanner>

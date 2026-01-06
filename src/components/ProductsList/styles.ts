@@ -8,9 +8,9 @@ export const Container = styled.section<ContainerProps>`
   padding: 32px 0;
   background-color: ${(props) =>
     props.$background === 'beige' ? '#FFF8F2' : '#FFF'};
-  
+
   h2 {
-    display: none; 
+    display: none;
   }
 `
 

@@ -5,8 +5,8 @@ import Profile from './Pages/Profile'
 const Rotas = () => (
   <Routes>
     {/* Caminho da página 1 (Lista de Restaurantes) */}
-    <Route path="/" element={<Home />} /> 
-    
+    <Route path="/" element={<Home />} />
+
     {/* Caminho da página 2 (Lista de Produtos) */}
     <Route path="/perfil" element={<Profile />} />
   </Routes>
