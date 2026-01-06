@@ -1,107 +1,98 @@
 import styled from 'styled-components'
-import { TagContainer } from '../Tag/styles'
+import { cores } from '../../styles'
 
-export const Card = styled.div`
-  background-color: #fff8f2;
-  border-radius: 9px;
-  width: 100%;
-  max-width: 472px;
-  height: auto;
-  min-height: 398px;
-  padding: 0 20px 20px 20px;
-  margin-bottom: 24px;
+// Adicionamos o $ na interface (transient prop)
+interface CardProps {
+  $variant: 'home' | 'profile'
+}
+
+export const Card = styled.div<CardProps>`
+  background-color: ${(props) =>
+    props.$variant === 'home' ? cores.branca : cores.corSalmao};
+  border: ${(props) =>
+    props.$variant === 'home' ? `1px solid ${cores.corSalmao}` : 'none'};
+  padding: 8px;
   position: relative;
-  border: 1px solid transparent;
-  opacity: 1;
-  overflow: hidden;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-  transition: transform 0.2s ease;
-
-  &:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-  }
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 32px;
+  color: ${(props) =>
+    props.$variant === 'home' ? cores.corSalmao : cores.corDePeleFundo};
 
   img {
     width: 100%;
-    height: 200px;
+    display: block;
+    height: 167px;
     object-fit: cover;
-    border-radius: 8px 8px 0 0;
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
   }
 
-  ${TagContainer} {
-    margin-right: 8px;
-  }
-
-  @media (max-width: 768px) {
-    max-width: 100%;
-    margin: 0 auto 20px auto;
-
-    img {
-      height: 180px;
-    }
-  }
-
-  @media (max-width: 480px) {
-    padding: 0 15px 15px 15px;
-    min-height: 350px;
-
-    img {
-      height: 160px;
-    }
+  /* Estilização dos botões (Link ou Button) dentro do Card */
+  button,
+  a {
+    align-self: ${(props) =>
+      props.$variant === 'home' ? 'flex-start' : 'stretch'};
+    width: ${(props) => (props.$variant === 'home' ? 'auto' : '100%')};
+    background-color: ${(props) =>
+      props.$variant === 'home' ? cores.corSalmao : cores.corDePeleFundo};
+    color: ${(props) =>
+      props.$variant === 'home' ? cores.corDePeleFundo : cores.corSalmao};
+    border: none;
+    padding: 4px 6px;
+    font-weight: bold;
+    text-decoration: none;
+    font-size: 14px;
+    cursor: pointer;
+    margin-top: 8px;
+    display: inline-block;
+    text-align: center; /* Garante que o texto fique centralizado quando for 100% */
   }
 `
 
 export const Titulo = styled.h3`
   font-weight: bold;
-  font-size: 16px;
+  font-size: 18px;
   display: block;
-  margin-top: 210px;
+  margin-top: 8px;
   margin-bottom: 8px;
-  color: #e66767;
-  padding: 0 10px;
-
-  @media (max-width: 768px) {
-    margin-top: 190px;
-    font-size: 15px;
-  }
-
-  @media (max-width: 480px) {
-    margin-top: 170px;
-    font-size: 14px;
-  }
 `
 
 export const Descricao = styled.p`
   font-size: 14px;
   line-height: 22px;
-  display: -webkit-box;
-  margin-top: 16px;
-  color: #e66767;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  -webkit-line-clamp: 3;
-  -webkit-box-orient: vertical;
-  padding: 0 10px;
-
-  @media (max-width: 768px) {
-    font-size: 13px;
-    line-height: 20px;
-  }
-
-  @media (max-width: 480px) {
-    font-size: 12px;
-    line-height: 18px;
-    -webkit-line-clamp: 2;
-  }
+  display: block;
+  margin-top: 8px; /* Reduzi um pouco para não empurrar tanto o botão */
+  margin-bottom: 8px;
+  flex-grow: 1;
 `
 
 export const Infos = styled.div`
   position: absolute;
   top: 16px;
   right: 16px;
+  display: flex;
+  gap: 8px;
+`
+
+export const Rating = styled.div`
+  display: flex;
+  align-items: center;
+  font-weight: bold;
+  font-size: 18px;
+
+  &::after {
+    content: '';
+    width: 21px;
+    height: 21px;
+    background-image: url(../../assets/images/estrela.png);
+    margin-left: 8px;
+    display: inline-block;
+    background-size: contain;
+    background-repeat: no-repeat;
+  }
+`
+
+export const TitleRatingContainer = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 `

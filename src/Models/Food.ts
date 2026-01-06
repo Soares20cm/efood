@@ -3,9 +3,10 @@ class Food {
   description: string
   image: string
   infos: string[]
-  system: string
   title: string
   id: number
+  rating: number
+  highlighted?: boolean
 
   constructor(
     id: number,
@@ -13,17 +14,18 @@ class Food {
     description: string,
     image: string,
     infos: string[],
-    system: string,
-    title: string
+    title: string,
+    rating: number,
+    highlighted?: boolean
   ) {
-    //aq é atribuiçâo
     this.id = id
     this.category = category
     this.description = description
     this.image = image
     this.infos = infos
-    this.system = system
     this.title = title
+    this.rating = rating
+    this.highlighted = highlighted
   }
 }
 

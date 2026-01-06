@@ -1,25 +1,22 @@
-import { Imagem, ImagemEfood } from './styles'
+import { Link } from 'react-router-dom'
 
+import { Imagem, TituloBanner } from './styles'
 import bannerImg from '../../assets/images/VectorFundoCabecalho.png'
 import bannerImgEfood from '../../assets/images/logo.png'
-import Button from '../Button'
 
 const Banner = () => (
   <Imagem style={{ backgroundImage: `url(${bannerImg})` }}>
-    <div>
-      <ImagemEfood
-        style={{ backgroundImage: `url(${bannerImgEfood})` }}
-      ></ImagemEfood>
-    </div>
-    <div>
-      <p>Viva experiências gastronômicas no conforto da sua casa</p>
-    </div>
     <div className="container">
-      <Button type="link" to="/produto" title="Clique auq para pedir Agora">
-        Peça Já o Seu!
-      </Button>
+      {/* Agora o Logo é um Link que leva para a Home (/) */}
+      <Link title="Clique aqui para voltar para a Home" to="/">
+        <img src={bannerImgEfood} alt="efood" className="logo" />
+      </Link>
+      
+      <TituloBanner>
+        Viva experiências gastronômicas <br /> no conforto da sua casa
+      </TituloBanner>
     </div>
   </Imagem>
-) //é para colocar a fóto do banner no site
+)
 
 export default Banner

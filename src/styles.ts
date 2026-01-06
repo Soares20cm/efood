@@ -3,8 +3,8 @@ import { createGlobalStyle } from 'styled-components'
 export const cores = {
   branca: '#fff',
   corSalmao: '#E66767',
-  corDePeleFundo: '#FFEBD9',
-  corDePeleFundoEscuro: '#ffebc1',
+  corDePeleFundo: '#FFF8F2',
+  corDePeleFundoEscuro: '#FFEBD9',
   corDeFundoHome: 'rgb(255, 195, 142)',
   preto: '#000'
 }
@@ -19,9 +19,9 @@ export const GlobalCss = createGlobalStyle`
   }
 
   body {
-    background-color: ${cores.corDeFundoHome};
-    color: ${cores.branca};
-    padding-top: 40px;
+    background-color: ${cores.corDePeleFundo};
+    color: ${cores.corSalmao};
+    padding: 0;
   }
 
 .container {

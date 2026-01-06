@@ -1,112 +1,86 @@
-import Banner from '../../components/Banner'
+import HomeBanner from '../../components/HomeBanner'
 import ProductsList from '../../components/ProductsList'
+import Footer from '../../components/Footer'
 import Food from '../../Models/Food'
 
 import macarrao from '../../assets/images/macarrao.png'
 import pizza from '../../assets/images/pizza.png'
 import suschi from '../../assets/images/suchi.png'
 
-const promocoes: Food[] = [
+// Este array representa os RESTAURANTES da página inicial
+const restaurantes: Food[] = [
   {
     id: 1,
-    category: 'promocoes',
-    description:
-      'Peça já o melhor da culinária japonesa no conforto da sua casa! Sushis frescos, sashimis deliciosos e pratos quentes irresistíveis. Entrega rápida, embalagens cuidadosas e qualidade garantida.Experimente o Japão sem sair do lar com nosso delivery!',
+    category: 'Japonesa',
+    description: 'Peça já o melhor da culinária japonesa no conforto da sua casa! Sushis frescos, sashimis deliciosos e pratos quentes irresistíveis.',
     title: 'Hioki Sushi',
-    system: 'Saiba Mais!',
-    infos: ['15%', 'R$ 65,00'],
-    image: suschi
+    infos: ['Destaque da semana', 'Japonesa'],
+    image: suschi,
+    rating: 4.9,
+    highlighted: true
   },
-
   {
     id: 2,
-    category: 'promocoes',
-    description:
-      'Peça já o melhor da culinária japonesa no conforto da sua casa! Sushis frescos, sashimis deliciosos e pratos quentes irresistíveis. Entrega rápida, embalagens cuidadosas e qualidade garantida.Experimente o Japão sem sair do lar com nosso delivery!',
+    category: 'Italiana',
+    description: 'A La Dolce Vita Trattoria leva a autêntica cozinha italiana até você! Desfrute de massas caseiras e pizzas deliciosas.',
     title: 'La Dolce Vita Trattoria',
-    system: 'Saiba Mais!',
-    infos: ['15%', 'R$ 65,00'],
-    image: macarrao
+    infos: ['Italiana'],
+    image: macarrao,
+    rating: 4.6
   },
-
   {
     id: 3,
-    category: 'promocoes',
-    description:
-      'Peça já o melhor da culinária japonesa no conforto da sua casa! Sushis frescos, sashimis deliciosos e pratos quentes irresistíveis. Entrega rápida, embalagens cuidadosas e qualidade garantida.Experimente o Japão sem sair do lar com nosso delivery!',
-    title: 'Hioki Sushi',
-    system: 'Saiba Mais!',
-    infos: ['15%', 'R$ 65,00'],
-    image: suschi
+    category: 'Italiana',
+    description: 'A La Dolce Vita Trattoria leva a autêntica cozinha italiana até você! Desfrute de massas caseiras e pizzas deliciosas.',
+    title: 'La Dolce Vita Trattoria',
+    infos: ['Italiana'],
+    image: pizza,
+    rating: 4.6
   },
-
   {
     id: 4,
-    category: 'promocoes',
-    description:
-      'Peça já o melhor da culinária japonesa no conforto da sua casa! Sushis frescos, sashimis deliciosos e pratos quentes irresistíveis. Entrega rápida, embalagens cuidadosas e qualidade garantida.Experimente o Japão sem sair do lar com nosso delivery!',
-    title: 'Pizza Marguerita',
-    system: 'Saiba Mais!',
-    infos: ['15%', 'R$ 65,00'],
-    image: pizza
-  }
-]
-
-const emBreve: Food[] = [
+    category: 'Japonesa',
+    description: 'Peça já o melhor da culinária japonesa no conforto da sua casa! Sushis frescos, sashimis deliciosos e pratos quentes irresistíveis.',
+    title: 'Hioki Sushi',
+    infos: ['Japonesa'],
+    image: suschi,
+    rating: 4.9
+  },
   {
     id: 5,
-    category: 'em breve',
-    description:
-      'A La Dolce Vita Trattoria leva a autêntica cozinha italiana até você! Desfrute de massas caseiras, pizzas deliciosas e risotos incríveis, tudo no conforto do seu lar. Entrega rápida, pratos bem embalados e sabor inesquecível. Peça já!',
-    title: 'Macarrão La Dolce',
-    system: 'Saiba mais!',
-    infos: ['19/08'],
-    image: macarrao
+    category: 'Italiana',
+    description: 'A La Dolce Vita Trattoria leva a autêntica cozinha italiana até você! Desfrute de massas caseiras e pizzas deliciosas.',
+    title: 'La Dolce Vita Trattoria',
+    infos: ['Italiana'],
+    image: macarrao,
+    rating: 4.6
   },
-
   {
     id: 6,
-    category: 'em breve',
-    description:
-      'A clássica Marguerita: molho de tomate suculento, mussarela derretida, manjericão fresco e um toque de azeite. Sabor e simplicidade!',
-    title: 'Pizza',
-    system: 'Saiba mais!',
-    infos: ['19/08'],
-    image: pizza
-  },
-
-  {
-    id: 7,
-    category: 'em breve',
-    description:
-      'A La Dolce Vita Trattoria leva a autêntica cozinha italiana até você! Desfrute de massas caseiras, pizzas deliciosas e risotos incríveis, tudo no conforto do seu lar. Entrega rápida, pratos bem embalados e sabor inesquecível. Peça já!',
-    title: 'Macarrão La Dolce',
-    system: 'Saiba mais!',
-    infos: ['19/08'],
-    image: macarrao
-  },
-
-  {
-    id: 8,
-    category: 'em breve',
-    description:
-      'A clássica Marguerita: molho de tomate suculento, mussarela derretida, manjericão fresco e um toque de azeite. Sabor e simplicidade!',
-    title: 'Pizza',
-    system: 'Saiba mais!',
-    infos: ['19/08'],
-    image: pizza
+    category: 'Italiana',
+    description: 'A La Dolce Vita Trattoria leva a autêntica cozinha italiana até você! Desfrute de massas caseiras e pizzas deliciosas.',
+    title: 'La Dolce Vita Trattoria',
+    infos: ['Italiana'],
+    image: pizza,
+    rating: 4.6
   }
 ]
 
 const Home = () => (
   <>
-    <Banner />
-    <ProductsList
-      food={promocoes}
-      title="Promoções do dia"
-      background="salmon"
-    />
-    <ProductsList food={emBreve} title="Especial do dia" background="black" />
+    <HomeBanner />
+    <div className="container">
+      {/* ADICIONADO: variant="home" 
+          Isso garante que o botão "Saiba mais" apareça corretamente.
+      */}
+      <ProductsList 
+        variant="home" 
+        food={restaurantes} 
+        title="Restaurantes" 
+        background="beige" 
+      />
+    </div>
+    <Footer />
   </>
 )
 

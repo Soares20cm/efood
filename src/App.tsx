@@ -1,22 +1,17 @@
-//createBrowserRouter serve para criar as rotas
+import { Provider } from 'react-redux'
 import { BrowserRouter } from 'react-router-dom'
-
-import Header from './components/Header'
+import { store } from './store'
 import { GlobalCss } from './styles'
-
-import Rotas from './routes'
-import Footer from './components/Footer'
+import Rotas from './routes' // Importe as rotas aqui
 
 function App() {
   return (
-    <BrowserRouter>
-      <GlobalCss />
-      <div className="container">
-        <Header />
-      </div>
-      <Rotas />
-      <Footer />
-    </BrowserRouter>
+    <Provider store={store}>
+      <BrowserRouter>
+        <GlobalCss />
+        <Rotas />
+      </BrowserRouter>
+    </Provider>
   )
 }
 
