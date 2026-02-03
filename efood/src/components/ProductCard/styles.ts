@@ -16,10 +16,10 @@ export const Card = styled.div`
     padding: 8px;
   }
 
-  > button {
+  > a {
     position: absolute;
-    bottom: 8px;
-    left: 8px;
+    bottom: 6px;
+    left: 6px;
     width: 82px;
     height: 24px;
   }
