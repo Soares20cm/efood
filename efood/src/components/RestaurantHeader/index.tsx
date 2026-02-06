@@ -10,11 +10,16 @@ import {
   Logo, 
   Navigation,
   RestaurantTitle,
-  RestaurantCategory
+  RestaurantCategory,
+  CartButton
 } from './styles'
 import logo1 from '../../images/logo1.png'
 
-const RestaurantHeader = () => {
+type Props = {
+  onOpenCart?: () => void
+}
+
+const RestaurantHeader = ({ onOpenCart }: Props) => {
   const { items } = useSelector((state: RootState) => state.cart)
 
   return (
@@ -27,7 +32,9 @@ const RestaurantHeader = () => {
         </Navigation>
         <Logo src={logo1} alt="EFOOD" />
         <Navigation>
-          <span>{items.length} produto(s) no carrinho</span>
+          <CartButton onClick={onOpenCart}>
+            {items.length} produto(s) no carrinho
+          </CartButton>
         </Navigation>
       </HeaderContent>
       <RestaurantCategory>Italiana</RestaurantCategory>

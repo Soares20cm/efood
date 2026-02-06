@@ -1,7 +1,9 @@
 import React, { useState } from 'react'
 import RestaurantHeader from '../../components/RestaurantHeader'
 import ProductsContainer from '../../components/ProductsContainer'
-import ProductModal from '../../components/ProductModal'
+import CheckoutModal from '../../components/CheckoutModal'
+import CartSidebar from '../../components/CartSidebar'
+import DeliveryModal from '../../components/DeliveryModal'
 import Footer from '../../components/Footer'
 import { PageContainer } from './styles'
 
@@ -14,27 +16,64 @@ type Product = {
 
 const Restaurant = () => {
   const [selectedProduct, setSelectedProduct] = useState<Product | null>(null)
-  const [isModalOpen, setIsModalOpen] = useState(false)
+  const [isProductModalOpen, setIsProductModalOpen] = useState(false)
+  const [isCartSidebarOpen, setIsCartSidebarOpen] = useState(false)
+  const [isDeliveryModalOpen, setIsDeliveryModalOpen] = useState(false)
 
-  const openModal = (product: Product) => {
+  const openProductModal = (product: Product) => {
     setSelectedProduct(product)
-    setIsModalOpen(true)
+    setIsProductModalOpen(true)
   }
 
-  const closeModal = () => {
-    setIsModalOpen(false)
+  const closeProductModal = () => {
+    setIsProductModalOpen(false)
     setSelectedProduct(null)
+  }
+
+  const handleAddToCart = () => {
+    closeProductModal()
+    setIsCartSidebarOpen(true)
+  }
+
+  const openCartSidebar = () => {
+    setIsCartSidebarOpen(true)
+  }
+
+  const closeCartSidebar = () => {
+    setIsCartSidebarOpen(false)
+  }
+
+  const handleContinueToDelivery = () => {
+    closeCartSidebar()
+    setIsDeliveryModalOpen(true)
+  }
+
+  const closeDeliveryModal = () => {
+    setIsDeliveryModalOpen(false)
   }
 
   return (
     <PageContainer>
-      <RestaurantHeader />
-      <ProductsContainer onProductClick={openModal} />
+      <RestaurantHeader onOpenCart={openCartSidebar} />
+      <ProductsContainer onProductClick={openProductModal} />
       <Footer />
-      <ProductModal 
+      
+      <CheckoutModal 
         product={selectedProduct}
-        isOpen={isModalOpen}
-        onClose={closeModal}
+        isOpen={isProductModalOpen}
+        onClose={closeProductModal}
+        onAddToCart={handleAddToCart}
+      />
+      
+      <CartSidebar
+        isOpen={isCartSidebarOpen}
+        onClose={closeCartSidebar}
+        onContinue={handleContinueToDelivery}
+      />
+      
+      <DeliveryModal
+        isOpen={isDeliveryModalOpen}
+        onClose={closeDeliveryModal}
       />
     </PageContainer>
   )

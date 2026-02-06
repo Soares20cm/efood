@@ -123,3 +123,18 @@ export const Navigation = styled.div`
     font-weight: 900;
   }
 `
+
+export const CartButton = styled.button`
+  background: none;
+  border: none;
+  font-family: Roboto;
+  font-weight: 900;
+  font-size: 18px;
+  color: ${colors.salmon};
+  cursor: pointer;
+  padding: 0;
+  
+  &:hover {
+    opacity: 0.8;
+  }
+`
