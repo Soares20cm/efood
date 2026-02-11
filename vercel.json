@@ -1,18 +1,11 @@
 {
-  "version": 2,
-  "builds": [
+  "buildCommand": "cd efood && npm install && npm run build",
+  "outputDirectory": "efood/build",
+  "framework": null,
+  "rewrites": [
     {
-      "src": "efood/package.json",
-      "use": "@vercel/static-build",
-      "config": {
-        "distDir": "efood/build"
-      }
-    }
-  ],
-  "routes": [
-    {
-      "src": "/(.*)",
-      "dest": "/efood/build/$1"
+      "source": "/(.*)",
+      "destination": "/index.html"
     }
   ]
 }
