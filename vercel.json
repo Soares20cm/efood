@@ -1,0 +1,18 @@
+{
+  "version": 2,
+  "builds": [
+    {
+      "src": "efood/package.json",
+      "use": "@vercel/static-build",
+      "config": {
+        "distDir": "efood/build"
+      }
+    }
+  ],
+  "routes": [
+    {
+      "src": "/(.*)",
+      "dest": "/efood/build/$1"
+    }
+  ]
+}
