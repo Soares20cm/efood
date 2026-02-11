@@ -1,7 +1,4 @@
 {
-  "buildCommand": "cd efood && npm install && npm run build",
-  "outputDirectory": "efood/build",
-  "framework": null,
   "rewrites": [
     {
       "source": "/(.*)",
