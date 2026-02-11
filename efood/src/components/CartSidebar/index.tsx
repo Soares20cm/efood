@@ -46,7 +46,10 @@ const CartSidebar = ({ isOpen, onClose, onContinue }: Props) => {
     }
   }
 
-  const total = items.length * 60.90 // Preço fixo por item
+  const total = items.reduce((acc: number, item: any) => {
+    const price = item.price || 60.90
+    return acc + price
+  }, 0)
 
   const handleContinue = () => {
     if (items.length > 0) {
@@ -76,7 +79,7 @@ const CartSidebar = ({ isOpen, onClose, onContinue }: Props) => {
                   <ItemImage src={item.image} alt={item.name} />
                   <ItemInfo>
                     <ItemName>{item.name}</ItemName>
-                    <ItemPrice>R$ 60,90</ItemPrice>
+                    <ItemPrice>R$ {(item.price || 60.90).toFixed(2).replace('.', ',')}</ItemPrice>
                   </ItemInfo>
                   <RemoveButton onClick={() => handleRemove(item.id)}>
                     <img src={lixeiraIcon} alt="Remover" />

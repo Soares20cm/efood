@@ -17,9 +17,10 @@ import logo1 from '../../images/logo1.png'
 
 type Props = {
   onOpenCart?: () => void
+  restaurantInfo?: { titulo: string; tipo: string } | null
 }
 
-const RestaurantHeader = ({ onOpenCart }: Props) => {
+const RestaurantHeader = ({ onOpenCart, restaurantInfo }: Props) => {
   const { items } = useSelector((state: RootState) => state.cart)
 
   return (
@@ -37,8 +38,8 @@ const RestaurantHeader = ({ onOpenCart }: Props) => {
           </CartButton>
         </Navigation>
       </HeaderContent>
-      <RestaurantCategory>Italiana</RestaurantCategory>
-      <RestaurantTitle>La Dolce Vita Trattoria</RestaurantTitle>
+      <RestaurantCategory>{restaurantInfo?.tipo || 'Italiana'}</RestaurantCategory>
+      <RestaurantTitle>{restaurantInfo?.titulo || 'La Dolce Vita Trattoria'}</RestaurantTitle>
     </HeaderContainer>
   )
 }

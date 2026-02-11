@@ -43,7 +43,10 @@ const DeliveryModal = ({ isOpen, onClose }: Props) => {
 
   if (!isOpen) return null
 
-  const total = items.length * 60.90
+  const total = items.reduce((acc: number, item: any) => {
+    const price = item.price || 60.90
+    return acc + price
+  }, 0)
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setFormData({
