@@ -6,14 +6,18 @@ export const Card = styled.div`
   border: 1px solid ${colors.salmon};
   position: relative;
   padding: 0;
-  width: 472px;
-  height: 398px;
+  width: 468px;
+  height: 478px;
   margin: 0 auto 48px auto;
   display: flex;
   flex-direction: column;
 
   > div:nth-child(2) {
-    padding: 8px;
+    padding: 10px;
+    color: rgb(230, 103, 103);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
   }
 
   > a {
@@ -58,20 +62,18 @@ export const Infos = styled.div`
 
 export const Titulo = styled.h3`
   font-family: Roboto;
-  font-weight: 400;
+  font-weight: 700;
   font-style: normal;
-  font-size: 14px;
+  font-size: 18px;
   line-height: 22px;
   letter-spacing: 0%;
   color: ${colors.salmon};
   margin: 0;
-  display: inline-block;
 `
 
 export const Rating = styled.div`
-  display: inline-flex;
+  display: flex;
   align-items: center;
-  float: right;
   gap: 8px;
 
   span {
@@ -92,13 +94,12 @@ export const Descricao = styled.p`
   font-family: Roboto;
   font-weight: 400;
   font-style: normal;
-  font-size: 14px;
-  line-height: 22px;
+  font-size: 18px;
+  line-height: 26px;
   letter-spacing: 0%;
-  color: ${colors.salmon};
-  margin: 16px 8px;
+  color: rgb(230, 103, 103);
+  margin: 0;
+  padding: 0 10px 5px 10px;
   text-align: justify;
-  flex: 1;
   overflow: hidden;
-  padding-bottom: 40px;
 `

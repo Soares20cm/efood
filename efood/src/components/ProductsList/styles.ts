@@ -8,7 +8,7 @@ export const Container = styled.section<Omit<Props, 'title' | 'food'>>`
     props.background === 'gray' ? colors.lightSalmon : colors.beige};
   position: relative;
   z-index: 1;
-  margin-bottom: 250px;
+  margin-bottom: 0;
 
   h2 {
     font-size: 18px;
@@ -19,18 +19,19 @@ export const Container = styled.section<Omit<Props, 'title' | 'food'>>`
 
 export const List = styled.ul`
   display: grid;
-  grid-template-columns: repeat(2, 472px);
-  gap: 80px 32px;
-  width: 1024px;
-  height: 1290px;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 32px 24px;
+  padding: 48px 16px 72px;
+  max-width: 1180px;
   margin: 0 auto;
-  justify-content: space-between;
+  width: 100%;
+  justify-items: center;
   position: relative;
   
   @media (max-width: 1024px) {
-    grid-template-columns: 472px;
+    grid-template-columns: 468px;
     gap: 32px;
-    width: 472px;
+    width: 468px;
     height: auto;
   }
   
@@ -41,7 +42,7 @@ export const List = styled.ul`
     
     li > div {
       width: 100%;
-      max-width: 472px;
+      max-width: 468px;
     }
   }
 `

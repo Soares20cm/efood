@@ -40,14 +40,16 @@ const Restaurant = () => {
             tipo: restaurant.tipo
           })
           
-          const formattedProducts: Product[] = restaurant.cardapio.map((item: MenuItem) => ({
-            id: item.id,
-            name: item.nome,
-            description: item.descricao,
-            image: item.foto,
-            price: item.preco,
-            porcao: item.porcao
-          }))
+          const formattedProducts: Product[] = restaurant.cardapio
+            .slice(0, 6) // Limita para apenas 6 produtos
+            .map((item: MenuItem) => ({
+              id: item.id,
+              name: item.nome,
+              description: item.descricao,
+              image: item.foto,
+              price: item.preco,
+              porcao: item.porcao
+            }))
           
           setProducts(formattedProducts)
         }

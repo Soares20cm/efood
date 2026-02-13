@@ -3,7 +3,7 @@ import { colors } from '../../styles'
 
 export const Container = styled.section`
   width: 1024px;
-  margin: 56px auto 160px auto;
+  margin: 56px auto 30px auto;
   opacity: 1;
   background-color: ${colors.beige};
 `
@@ -11,8 +11,7 @@ export const Container = styled.section`
 export const ProductGrid = styled.div`
   display: grid;
   grid-template-columns: repeat(3, 320px);
-  grid-template-rows: repeat(2, 338px);
-  column-gap: 32px;
-  row-gap: 32px;
+  column-gap: 24px;
+  row-gap: 24px;
   width: 1024px;
 `
