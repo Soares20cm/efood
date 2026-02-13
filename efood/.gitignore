@@ -39,3 +39,8 @@ Thumbs.db
 # Package lock files (opcional - alguns projetos preferem manter)
 # package-lock.json
 # yarn.lock
+
+# Arquivos executáveis
+*.exe
+*.msi
+*.dmg
