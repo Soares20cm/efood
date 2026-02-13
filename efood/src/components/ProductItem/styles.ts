@@ -7,6 +7,8 @@ export const Card = styled.div`
   height: 338px;
   position: relative;
   opacity: 1;
+  display: flex;
+  flex-direction: column;
 `
 
 export const Image = styled.img`
@@ -14,14 +16,15 @@ export const Image = styled.img`
   height: 167px;
   margin: 8px;
   object-fit: cover;
+  display: block;
 `
 
 export const Content = styled.div`
-  padding: 8px;
+  padding: 0 8px 8px 8px;
   display: flex;
   flex-direction: column;
   gap: 8px;
-  height: calc(100% - 183px);
+  flex: 1;
 `
 
 export const Title = styled.h3`
@@ -45,4 +48,8 @@ export const Description = styled.p`
   color: ${colors.lightSalmon};
   margin: 0;
   flex: 1;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 4;
+  -webkit-box-orient: vertical;
 `
