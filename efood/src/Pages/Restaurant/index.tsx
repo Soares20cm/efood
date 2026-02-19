@@ -25,7 +25,7 @@ const Restaurant = () => {
   const [isCartSidebarOpen, setIsCartSidebarOpen] = useState(false)
   const [isDeliveryModalOpen, setIsDeliveryModalOpen] = useState(false)
   const [products, setProducts] = useState<Product[]>([])
-  const [restaurantInfo, setRestaurantInfo] = useState<{ titulo: string; tipo: string } | null>(null)
+  const [restaurantInfo, setRestaurantInfo] = useState<{ titulo: string; tipo: string; capa: string } | null>(null)
   const [loading, setLoading] = useState(true)
 
   useEffect(() => {
@@ -37,7 +37,8 @@ const Restaurant = () => {
         if (restaurant) {
           setRestaurantInfo({
             titulo: restaurant.titulo,
-            tipo: restaurant.tipo
+            tipo: restaurant.tipo,
+            capa: restaurant.capa
           })
           
           const formattedProducts: Product[] = restaurant.cardapio

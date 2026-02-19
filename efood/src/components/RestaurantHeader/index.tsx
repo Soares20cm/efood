@@ -17,7 +17,7 @@ import logo1 from '../../images/logo1.png'
 
 type Props = {
   onOpenCart?: () => void
-  restaurantInfo?: { titulo: string; tipo: string } | null
+  restaurantInfo?: { titulo: string; tipo: string; capa: string } | null
 }
 
 const RestaurantHeader = ({ onOpenCart, restaurantInfo }: Props) => {
@@ -26,7 +26,7 @@ const RestaurantHeader = ({ onOpenCart, restaurantInfo }: Props) => {
   return (
     <HeaderContainer>
       <VectorBackground />
-      <Logo2Background />
+      <Logo2Background backgroundImage={restaurantInfo?.capa} />
       <HeaderContent>
         <Navigation>
           <Link to="/">Restaurantes</Link>

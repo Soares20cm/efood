@@ -25,14 +25,14 @@ export const VectorBackground = styled.div`
   z-index: 1;
 `
 
-export const Logo2Background = styled.div`
+export const Logo2Background = styled.div<{ backgroundImage?: string }>`
   position: absolute;
   width: 100vw;
   height: 280px;
   top: 162px;
   left: 50%;
   transform: translateX(-50%);
-  background-image: url(${logo2Img});
+  background-image: url(${props => props.backgroundImage || logo2Img});
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
