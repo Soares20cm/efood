@@ -42,8 +42,6 @@ const CheckoutModal = ({ product, isOpen, onClose, onAddToCart }: Props) => {
     }
   }
 
-  const price = product.price || 60.90
-
   return (
     <ModalOverlay onClick={handleOverlayClick}>
       <ModalContainer>
@@ -54,7 +52,7 @@ const CheckoutModal = ({ product, isOpen, onClose, onAddToCart }: Props) => {
           <ProductDescription>{product.description}</ProductDescription>
           {product.porcao && <ProductDescription>Serve: {product.porcao}</ProductDescription>}
           <Button type="button" title="Adicionar ao carrinho" onClick={handleAddToCart}>
-            {`Adicionar ao carrinho - R$ ${price.toFixed(2).replace('.', ',')}`}
+            {`Adicionar ao carrinho - R$ ${product.price?.toFixed(2).replace('.', ',') || '0,00'}`}
           </Button>
         </ProductInfo>
       </ModalContainer>

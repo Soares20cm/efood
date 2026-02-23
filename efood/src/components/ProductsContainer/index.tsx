@@ -37,6 +37,8 @@ const ProductsContainer = ({ products = [], onProductClick }: Props) => {
             name={produto.name}
             description={produto.description}
             image={produto.image}
+            price={produto.price}
+            porcao={produto.porcao}
             onProductClick={onProductClick}
           />
         ))}

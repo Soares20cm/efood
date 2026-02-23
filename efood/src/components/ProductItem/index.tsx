@@ -7,18 +7,22 @@ type Props = {
   name: string
   description: string
   image: string
+  price: number
+  porcao: string
   onProductClick?: (product: {
     id: number
     name: string
     description: string
     image: string
+    price: number
+    porcao: string
   }) => void
 }
 
-const ProductItem = ({ id, name, description, image, onProductClick }: Props) => {
+const ProductItem = ({ id, name, description, image, price, porcao, onProductClick }: Props) => {
   const handleClick = () => {
     if (onProductClick) {
-      onProductClick({ id, name, description, image })
+      onProductClick({ id, name, description, image, price, porcao })
     }
   }
 
