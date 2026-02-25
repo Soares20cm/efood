@@ -32,7 +32,19 @@ const CheckoutModal = ({ product, isOpen, onClose, onAddToCart }: Props) => {
   if (!isOpen || !product) return null
 
   const handleAddToCart = () => {
-    dispatch(add(product))
+    if (!product) return
+    
+    // Garante que o produto tem todos os dados necessários
+    const productToAdd = {
+      id: product.id,
+      name: product.name,
+      description: product.description,
+      image: product.image,
+      price: product.price || 0,
+      porcao: product.porcao || 'Não informado'
+    }
+    
+    dispatch(add(productToAdd))
     onAddToCart()
   }
 

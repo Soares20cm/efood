@@ -19,6 +19,8 @@ type Props = {
     name: string
     description: string
     image: string
+    price?: number
+    porcao?: string
   } | null
   isOpen: boolean
   onClose: () => void
@@ -30,7 +32,19 @@ const ProductModal = ({ product, isOpen, onClose }: Props) => {
   if (!isOpen || !product) return null
 
   const addToCart = () => {
-    dispatch(add(product))
+    if (!product) return
+    
+    // Garante que o produto tem todos os dados necessários
+    const productToAdd = {
+      id: product.id,
+      name: product.name,
+      description: product.description,
+      image: product.image,
+      price: product.price || 0,
+      porcao: product.porcao || 'Não informado'
+    }
+    
+    dispatch(add(productToAdd))
     onClose()
   }
 
