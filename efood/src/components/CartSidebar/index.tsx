@@ -47,8 +47,7 @@ const CartSidebar = ({ isOpen, onClose, onContinue }: Props) => {
   }
 
   const total = items.reduce((acc: number, item: any) => {
-    const price = item.price || 60.90
-    return acc + price
+    return acc + (item.price || 0)
   }, 0)
 
   const handleContinue = () => {
@@ -79,7 +78,7 @@ const CartSidebar = ({ isOpen, onClose, onContinue }: Props) => {
                   <ItemImage src={item.image} alt={item.name} />
                   <ItemInfo>
                     <ItemName>{item.name}</ItemName>
-                    <ItemPrice>R$ {(item.price || 60.90).toFixed(2).replace('.', ',')}</ItemPrice>
+                    <ItemPrice>R$ {(item.price || 0).toFixed(2).replace('.', ',')}</ItemPrice>
                   </ItemInfo>
                   <RemoveButton onClick={() => handleRemove(item.id)}>
                     <img src={lixeiraIcon} alt="Remover" />
