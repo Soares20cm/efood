@@ -7,9 +7,10 @@ type Props = {
   onClick?: () => void
   children: string
   variant?: 'primary' | 'secondary'
+  disabled?: boolean
 }
 
-const Button = ({ type, title, to, onClick, children, variant = 'primary' }: Props) => {
+const Button = ({ type, title, to, onClick, children, variant = 'primary', disabled = false }: Props) => {
   if (type === 'button' || type === 'submit') {
     return (
       <ButtonContainer
@@ -17,6 +18,7 @@ const Button = ({ type, title, to, onClick, children, variant = 'primary' }: Pro
         type={type}
         title={title}
         onClick={onClick}
+        disabled={disabled}
       >
         {children}
       </ButtonContainer>

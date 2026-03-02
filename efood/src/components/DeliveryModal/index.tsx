@@ -1,6 +1,8 @@
 import React, { useState } from 'react'
-import { useSelector } from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux'
 import { RootState } from '../../store'
+import { clear } from '../../store/reducers/cart'
+import { checkout } from '../../services/api'
 import Button from '../Button'
 import { 
   ModalOverlay, 
@@ -26,7 +28,10 @@ type Props = {
 
 const DeliveryModal = ({ isOpen, onClose }: Props) => {
   const { items } = useSelector((state: RootState) => state.cart)
+  const dispatch = useDispatch()
   const [step, setStep] = useState<'delivery' | 'payment' | 'success'>('delivery')
+  const [orderId, setOrderId] = useState<string>('')
+  const [isLoading, setIsLoading] = useState(false)
   const [formData, setFormData] = useState({
     name: '',
     address: '',
@@ -44,8 +49,7 @@ const DeliveryModal = ({ isOpen, onClose }: Props) => {
   if (!isOpen) return null
 
   const total = items.reduce((acc: number, item: any) => {
-    const price = item.price || 60.90
-    return acc + price
+    return acc + (item.price || 0)
   }, 0)
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -62,17 +66,52 @@ const DeliveryModal = ({ isOpen, onClose }: Props) => {
 
   const handleFinishOrder = async (e: React.FormEvent) => {
     e.preventDefault()
+    setIsLoading(true)
     
-    // Aqui você pode fazer uma chamada AJAX para a API
-    setStep('success')
-    
-    setTimeout(() => {
-      handleClose()
-    }, 3000)
+    try {
+      const payload = {
+        products: items.map((item: any) => ({
+          id: item.id,
+          price: item.price || 0
+        })),
+        delivery: {
+          receiver: formData.name,
+          address: {
+            description: formData.address,
+            city: formData.city,
+            zipCode: formData.cep,
+            number: Number(formData.number),
+            complement: formData.complement
+          }
+        },
+        payment: {
+          card: {
+            name: formData.cardName,
+            number: formData.cardNumber,
+            code: Number(formData.cvv),
+            expires: {
+              month: Number(formData.expiryMonth),
+              year: Number(formData.expiryYear)
+            }
+          }
+        }
+      }
+      
+      const response = await checkout(payload)
+      setOrderId(response.orderId)
+      setStep('success')
+      dispatch(clear())
+    } catch (error) {
+      console.error('Erro ao finalizar pedido:', error)
+      alert('Erro ao finalizar pedido. Tente novamente.')
+    } finally {
+      setIsLoading(false)
+    }
   }
 
   const handleClose = () => {
     setStep('delivery')
+    setOrderId('')
     setFormData({
       name: '',
       address: '',
@@ -248,10 +287,10 @@ const DeliveryModal = ({ isOpen, onClose }: Props) => {
               </FormGroup>
             </InputRow>
             <ButtonGroup>
-              <Button type="submit" title="Finalizar pagamento">
-                Finalizar pagamento
+              <Button type="submit" title="Finalizar pagamento" disabled={isLoading}>
+                {isLoading ? 'Processando...' : 'Finalizar pagamento'}
               </Button>
-              <Button type="button" title="Voltar" onClick={() => setStep('delivery')}>
+              <Button type="button" title="Voltar" onClick={() => setStep('delivery')} disabled={isLoading}>
                 Voltar para a edição de endereço
               </Button>
             </ButtonGroup>
@@ -260,7 +299,7 @@ const DeliveryModal = ({ isOpen, onClose }: Props) => {
 
         {step === 'success' && (
           <div style={{ padding: '24px' }}>
-            <Title>Pedido realizado - ORDER_ID</Title>
+            <Title>Pedido realizado - {orderId}</Title>
             <Description>
               Estamos felizes em informar que seu pedido já está em processo de preparação e, em breve, será entregue no endereço fornecido.
             </Description>
