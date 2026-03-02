@@ -33,7 +33,10 @@ const cartSlice = createSlice({
       state.items.push(action.payload)
     },
     remove: (state, action: PayloadAction<{ id: number }>) => {
-      state.items = state.items.filter(item => item.id !== action.payload.id)
+      const index = state.items.findIndex(item => item.id === action.payload.id)
+      if (index !== -1) {
+        state.items.splice(index, 1)
+      }
     },
     clear: (state) => {
       state.items = []

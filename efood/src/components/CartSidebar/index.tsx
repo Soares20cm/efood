@@ -73,8 +73,8 @@ const CartSidebar = ({ isOpen, onClose, onContinue }: Props) => {
         ) : (
           <>
             <CartList>
-              {items.map((item: any) => (
-                <CartItem key={item.id}>
+              {items.map((item: any, index: number) => (
+                <CartItem key={`${item.id}-${index}`}>
                   <ItemImage src={item.image} alt={item.name} />
                   <ItemInfo>
                     <ItemName>{item.name}</ItemName>
