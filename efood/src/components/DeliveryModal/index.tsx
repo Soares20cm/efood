@@ -149,9 +149,6 @@ const DeliveryModal = ({ isOpen, onClose }: Props) => {
     e.preventDefault()
     
     // Valida todos os campos de entrega
-    const newErrors = { ...errors }
-    let hasError = false
-
     if (!formData.name.trim()) {
       alert('Por favor, preencha o nome de quem irá receber')
       return
