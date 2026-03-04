@@ -45,6 +45,14 @@ const DeliveryModal = ({ isOpen, onClose }: Props) => {
     expiryMonth: '',
     expiryYear: ''
   })
+  const [errors, setErrors] = useState({
+    cep: '',
+    number: '',
+    cardNumber: '',
+    cvv: '',
+    expiryMonth: '',
+    expiryYear: ''
+  })
 
   if (!isOpen) return null
 
@@ -53,19 +61,157 @@ const DeliveryModal = ({ isOpen, onClose }: Props) => {
   }, 0)
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = e.target
+    let newValue = value
+    let error = ''
+
+    // Validações e máscaras
+    switch (name) {
+      case 'cep':
+        // Remove tudo que não é número
+        newValue = value.replace(/\D/g, '')
+        // Limita a 8 dígitos
+        newValue = newValue.slice(0, 8)
+        // Valida se tem 8 dígitos
+        if (newValue.length > 0 && newValue.length < 8) {
+          error = 'CEP deve ter 8 dígitos'
+        }
+        break
+      
+      case 'number':
+        // Apenas números
+        newValue = value.replace(/\D/g, '')
+        if (newValue.length === 0) {
+          error = 'Número é obrigatório'
+        }
+        break
+      
+      case 'cardNumber':
+        // Remove tudo que não é número
+        newValue = value.replace(/\D/g, '')
+        // Limita a 16 dígitos
+        newValue = newValue.slice(0, 16)
+        // Valida se tem 16 dígitos
+        if (newValue.length > 0 && newValue.length < 16) {
+          error = 'Número do cartão deve ter 16 dígitos'
+        }
+        break
+      
+      case 'cvv':
+        // Apenas números
+        newValue = value.replace(/\D/g, '')
+        // Limita a 3 dígitos
+        newValue = newValue.slice(0, 3)
+        // Valida se tem 3 dígitos
+        if (newValue.length > 0 && newValue.length < 3) {
+          error = 'CVV deve ter 3 dígitos'
+        }
+        break
+      
+      case 'expiryMonth':
+        // Apenas números
+        newValue = value.replace(/\D/g, '')
+        // Limita a 2 dígitos
+        newValue = newValue.slice(0, 2)
+        // Valida se está entre 01 e 12
+        const month = parseInt(newValue)
+        if (newValue.length === 2 && (month < 1 || month > 12)) {
+          error = 'Mês deve estar entre 01 e 12'
+        }
+        break
+      
+      case 'expiryYear':
+        // Apenas números
+        newValue = value.replace(/\D/g, '')
+        // Limita a 4 dígitos
+        newValue = newValue.slice(0, 4)
+        // Valida se é um ano válido (maior ou igual ao ano atual)
+        const currentYear = new Date().getFullYear()
+        const year = parseInt(newValue)
+        if (newValue.length === 4 && year < currentYear) {
+          error = 'Ano de vencimento inválido'
+        }
+        break
+    }
+
     setFormData({
       ...formData,
-      [e.target.name]: e.target.value
+      [name]: newValue
+    })
+
+    setErrors({
+      ...errors,
+      [name]: error
     })
   }
 
   const handleContinueToPayment = (e: React.FormEvent) => {
     e.preventDefault()
+    
+    // Valida todos os campos de entrega
+    const newErrors = { ...errors }
+    let hasError = false
+
+    if (!formData.name.trim()) {
+      alert('Por favor, preencha o nome de quem irá receber')
+      return
+    }
+
+    if (!formData.address.trim()) {
+      alert('Por favor, preencha o endereço')
+      return
+    }
+
+    if (!formData.city.trim()) {
+      alert('Por favor, preencha a cidade')
+      return
+    }
+
+    if (formData.cep.length !== 8) {
+      alert('CEP deve ter 8 dígitos')
+      return
+    }
+
+    if (!formData.number.trim()) {
+      alert('Por favor, preencha o número')
+      return
+    }
+
     setStep('payment')
   }
 
   const handleFinishOrder = async (e: React.FormEvent) => {
     e.preventDefault()
+    
+    // Valida todos os campos de pagamento
+    if (!formData.cardName.trim()) {
+      alert('Por favor, preencha o nome no cartão')
+      return
+    }
+
+    if (formData.cardNumber.length !== 16) {
+      alert('Número do cartão deve ter 16 dígitos')
+      return
+    }
+
+    if (formData.cvv.length !== 3) {
+      alert('CVV deve ter 3 dígitos')
+      return
+    }
+
+    const month = parseInt(formData.expiryMonth)
+    if (formData.expiryMonth.length !== 2 || month < 1 || month > 12) {
+      alert('Mês de vencimento inválido (deve estar entre 01 e 12)')
+      return
+    }
+
+    const currentYear = new Date().getFullYear()
+    const year = parseInt(formData.expiryYear)
+    if (formData.expiryYear.length !== 4 || year < currentYear) {
+      alert('Ano de vencimento inválido')
+      return
+    }
+
     setIsLoading(true)
     
     try {
@@ -120,6 +266,14 @@ const DeliveryModal = ({ isOpen, onClose }: Props) => {
       number: '',
       complement: '',
       cardName: '',
+      cardNumber: '',
+      cvv: '',
+      expiryMonth: '',
+      expiryYear: ''
+    })
+    setErrors({
+      cep: '',
+      number: '',
       cardNumber: '',
       cvv: '',
       expiryMonth: '',
@@ -184,6 +338,9 @@ const DeliveryModal = ({ isOpen, onClose }: Props) => {
                   name="cep"
                   value={formData.cep}
                   onChange={handleInputChange}
+                  placeholder="00000000"
+                  minLength={8}
+                  maxLength={8}
                   required
                 />
               </FormGroup>
@@ -243,6 +400,8 @@ const DeliveryModal = ({ isOpen, onClose }: Props) => {
                   name="cardNumber"
                   value={formData.cardNumber}
                   onChange={handleInputChange}
+                  placeholder="0000000000000000"
+                  minLength={16}
                   maxLength={16}
                   required
                 />
@@ -255,6 +414,8 @@ const DeliveryModal = ({ isOpen, onClose }: Props) => {
                   name="cvv"
                   value={formData.cvv}
                   onChange={handleInputChange}
+                  placeholder="000"
+                  minLength={3}
                   maxLength={3}
                   required
                 />
@@ -269,6 +430,8 @@ const DeliveryModal = ({ isOpen, onClose }: Props) => {
                   name="expiryMonth"
                   value={formData.expiryMonth}
                   onChange={handleInputChange}
+                  placeholder="01"
+                  minLength={2}
                   maxLength={2}
                   required
                 />
@@ -281,6 +444,8 @@ const DeliveryModal = ({ isOpen, onClose }: Props) => {
                   name="expiryYear"
                   value={formData.expiryYear}
                   onChange={handleInputChange}
+                  placeholder="2024"
+                  minLength={4}
                   maxLength={4}
                   required
                 />
